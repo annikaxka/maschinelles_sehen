@@ -20,7 +20,7 @@ brain_tumor_proj.py
     -implementiert die vollständige Pipeline zur binären Tumorsegmentierung von MRT-T1-Bildern
      mithilfe eines UNet Modells
 output_each_epoch_brain_tumor_proj.pdf
-    -Output jeder Epoche mit verwendeter Loss Metrik, Anzahl der Epoche, Train Loss, Val Loss,
+    -Output jeder Epoche mit verwendeter Loss Metrik, Anzahl der Epochen, Train Loss, Val Loss,
      Dice Score und Stand des aktuellen Netzes mit Visualisierung von random Validation Tumor
     Patch, Ground Truth und Predicted Mask
 output_plots_loss_dice_brain_tumor_proj.pdf
