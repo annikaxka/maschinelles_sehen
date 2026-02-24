@@ -66,7 +66,7 @@ brain_tumor_proj.py - Durchführung in Google Colab
     - die 240x240 T1 Slices und deren Masken werden in kleinere Patches aufgeteilt
         - Patchgröße: 96x96
         - Sliding Window mit Schrittweite patch_size // 2
-        - Klassenbalanciert 50%/50% mit max. 2500 Tumor Patches und 2500 Backgrounf Patches
+        - Klassenbalanciert 50%/50% mit 2500 Tumor Patches und 2500 Backgrounf Patches
                 - Tumor-Patch mit >1% Tumorfläche im Bild
                 - gespeichert als:
                     - patches_img.npy
@@ -80,12 +80,11 @@ brain_tumor_proj.py - Durchführung in Google Colab
     - PatchDataset Klasse
         - lädt numpy Dateien
         - konvertiert sie zu torch tensoren
-        - fügt kanaldimension hinzu
         - batch_size =8
     -UNet Modell
         -Architektur
             - Input: 1x96x96
-            Encoder - downsampling - erkennt Strukturen/globale Infos:
+            Encoder - downsampling:
                 - Double Conv mit ReLU 1 -> 32
                 - MaxPool, Halbierung der Bildgröße
                 - DoubleConv mit ReLU 32 -> 64
@@ -99,14 +98,12 @@ brain_tumor_proj.py - Durchführung in Google Colab
                 - UpConv 64 -> 32
                 - Skip Connection (mit oberem Encoder für Details aus Encoder)
                 - DoubleConv mit ReLU 64 -> 32
-            Output: 1x1 Conv - Pixelweise Klassifikation mit Tumorwahrscheinlichkeit
+            Output: 1x1 Conv
         -Loss Funktionen 
             -Dice-Loss
             -und Dice und BCE Loss
         -Training
             -Optimizer: Adam (Adaptive Moment Estimation)
-                - besonders gut für kleine Zielregionen und med. Bilder
-                - robuster als SDG 
             -Lernrate: 1e-4
             -Epochen:45
             - pro Epoche:
