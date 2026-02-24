@@ -1,33 +1,55 @@
 Dieses Projekt implementiert eine binäre Tumorsegmentierung auf Grundlage des BraTS2020-Datensatzes mithilfe von Deep Learning.
 Ziel ist es, Tumorregionen in MRT-T1-Slices automatisch zu erkennen.
 
+Projektidee:
+Die manuelle Segmentierung von Gehirntumoren in MRT-Daten ist sehr zeitaufwändig und subjektiv. Ziel dieses Projektes ist eine automatisierte, präzise Segmentierung von Gehirntumoren in MRT-T1-Slices mithilfe von Deep Learning. Anhand der MRT-Slices und zugehörigen Tumormasken des BraTS2020-Datensatzes soll ein einfaches, neuronales UNet mit klassenbalancierten Tumor- und Backgroundpatches trainiert werden, das die Tumorregionen zuverlässig erkennt und eine entsprechende binäre Maske erzeugt.
+
 Datengrundlage:
+BraTS2020-Datensatz
 https://www.kaggle.com/datasets/awsaf49/brats2020-training-data 
+369 Gehirn MRTs mit einem Tumor, je 154 Slices pro Scan und zugehörigen Gehirntumormasken
 
 Files im Projekt:
+Poster_brain_tumor_proj.pdf
+    -wissenschaftliches Poster zum Projekt
 h5file.py 
     -zur Visualisierung und Analyse einer einzelnen H5-Datei (einzelnes Slice eines Volumes)
+output_h5file.png
+    -Output der h5file.py Datei
 brain_tumor_proj.py
-    -implementiert die vollständige Pipeline zur binären Tumorsegmentierung von MRT-Bildern mithilfe eines UNet Modells
+    -implementiert die vollständige Pipeline zur binären Tumorsegmentierung von MRT-T1-Bildern
+     mithilfe eines UNet Modells
+output_each_epoch_brain_tumor_proj.pdf
+    -Output jeder Epoche mit verwendeter Loss Metrik, Anzahl der Epoche, Train Loss, Val Loss,
+     Dice Score und Stand des aktuellen Netzes mit Visualisierung von random Validation Tumor
+    Patch, Ground Truth und Predicted Mask
+output_plots_loss_dice_brain_tumor_proj.pdf
+    -finale Plots von Train und Val Loss über die 45 Epochen für Dice Loss und Dice + BCE Loss
+    -Vergleich von Dice Score über 45 Epochen für Training mit Dice Loss und Dice + BCE Loss
 
 relevante Papers und Referenzen:
     - zu UNet-Architekturen, Patch-basierter Approach, Dice Evaluation
-        Lefkovits,S.,Kovács,A.,&Szabó,T.(2022).U-Netarchitecturevariantsforbraintumorsegmentation.ActaUniversitatisSapientiae,Informatica,14(1),23–38.
+        Lefkovits,S.,Kovács,A.,&Szabó,T.(2022).UNet architecture variants for brain tumor
+        segmentation. Acta Universitatis Sapientiae, Informatica, 14(1),23–38.
         DOI:10.2478/ausi-2022-0004
     - zu Klassenbalanciert, 2D Patch-basiertes CNN mit Sliding Window 
-        Kao P-Y, Shailja S, Jiang J, Zhang A, Khan A, Chen JW and Manjunath BS (2020) Improving Patch-Based Convolutional Neural Networks for MRI Brain Tumor
-        Segmentation by Leveraging Location Information. Front. Neurosci. 13:1449.
+        Kao P-Y, Shailja S, Jiang J, Zhang A, Khan A, Chen JW and Manjunath BS (2020) Improving
+        Patch-Based Convolutional Neural Networks for MRI Brain Tumor Segmentation by
+        Leveraging Location Information. Front. Neurosci. 13:1449.
         DOI: 10.3389/fnins.2019.01449
     - zu Dice Loss und Kombi mit BCE Loss
-        Sudre,C.H.,Li,W.,Vercauteren,T.,Ourselin,S.,&JorgeCardoso,M (2017).GeneralisedDiceoverlapasadeeplearninglossfunctionforhighlyunbalancedsegmentations.
-        InDeepLearninginMedicalImageAnalysisandMultimodalLearningforClinicalDecisionSupport(pp.240–248).Springer.
+        Sudre,C.H.,Li,W.,Vercauteren,T.,Ourselin,S.,&JorgeCardoso,M (2017).Generalised Dice
+        overlap as a deep learning loss function for highly unbalanced segmentations. In Deep
+        Learning in Medical Image Analysis and Multimodal Learning for Clinical Decision Support
+        (pp.240–248).Springer.
         DOI:10.1007/978-3-319-67558-9_28
     - Metriken Dice-Loss, BCE-Loss, Dice-Score
-        Jadon,S.(2020).Asurveyoflossfunctionsforsemanticsegmentation.2020IEEEConferenceonComputationalIntelligenceinBioinformaticsandComputationalBiology(CIBCB),
-        1–7.
+        Jadon,S (2020). A survey of loss functions for semantic segmentation. 2020 IEEE
+        Conference on Computational Intelligence in Bioinformatics and Computational Biology
+        (CIBCB), 1–7.
         DOI:10.1109/CIBCB48159.2020.9277638
 
-Details:
+Python-Dateien und Vorgehensweise:
 h5file.py
     - die H5-Datei aus dem BraTS2020 Datensatz enthälgt
         -image (240,240,4)
@@ -100,5 +122,5 @@ brain_tumor_proj.py - Durchführung in Google Colab
                         -Ground Truth Overlay (grün)
                         -Prediction Overlay (rot)
     -Evaluierung
-    -Plotten von Training und Validation Loss
+    -Plotten von Training und Validation Loss für Dice Loss und BCE + Dice Loss 
     -Vergleich der Dice Scores von Dice Loss und BCE + Dice Loss 
