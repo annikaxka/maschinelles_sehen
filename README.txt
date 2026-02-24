@@ -2,7 +2,7 @@ Dieses Projekt implementiert eine binäre Tumorsegmentierung auf Grundlage des B
 Ziel ist es, Tumorregionen in MRT-T1-Slices automatisch zu erkennen.
 
 Projektidee:
-Die manuelle Segmentierung von Gehirntumoren in MRT-Daten ist sehr zeitaufwändig und subjektiv. Ziel dieses Projekts ist eine automatisierte, präzise Segmentierung von Gehirntumoren in MRT-T1-Slices mithilfe von Deep Learning. Anhand der MRT-Slices und zugehörigen Tumormasken des BraTS2020-Datensatzes soll ein einfaches, neuronales UNet mit klassenbalancierten Tumor- und Backgroundpatches trainiert werden, das die Tumorregionen zuverlässig erkennt und eine entsprechende binäre Maske erzeugt.
+Die manuelle Segmentierung von Gehirntumoren in MRT-Daten ist sehr zeitaufwändig und subjektiv. Ziel dieses Projekts ist eine automatisierte, präzise Segmentierung von Gehirntumoren in MRT-T1-Slices mithilfe von Deep Learning. Anhand der MRT-Slices und zugehörigen Tumormasken des BraTS2020-Datensatzes soll ein einfaches, neuronales 2D-UNet mit klassenbalancierten Tumor- und Backgroundpatches trainiert werden, das die Tumorregionen zuverlässig erkennt und eine entsprechende binäre Maske erzeugt.
 
 Datengrundlage:
 BraTS2020-Datensatz
